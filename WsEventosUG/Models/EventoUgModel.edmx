@@ -1645,6 +1645,7 @@ advertencia 6002: La tabla o vista 'dbEventosUG.dbo.Detalle_Matricula' no tiene 
           </ReferentialConstraint>
         </Association>
         <ComplexType Name="spConsultarEventos_Result">
+          <Property Type="Int32" Name="id_evento" Nullable="false" />
           <Property Type="String" Name="Titulo" Nullable="false" MaxLength="50" />
           <Property Type="String" Name="Preferencia" Nullable="false" MaxLength="50" />
           <Property Type="String" Name="Detalle" Nullable="false" MaxLength="200" />
@@ -1863,6 +1864,7 @@ advertencia 6002: La tabla o vista 'dbEventosUG.dbo.Detalle_Matricula' no tiene 
           <FunctionImportMapping FunctionImportName="spConsultarEventos" FunctionName="dbEventosUGModel.Store.spConsultarEventos">
             <ResultMapping>
               <ComplexTypeMapping TypeName="dbEventosUGModel.spConsultarEventos_Result">
+                <ScalarProperty Name="id_evento" ColumnName="id_evento"/>
                 <ScalarProperty Name="Titulo" ColumnName="Titulo" />
                 <ScalarProperty Name="Preferencia" ColumnName="Preferencia" />
                 <ScalarProperty Name="Detalle" ColumnName="Detalle" />
