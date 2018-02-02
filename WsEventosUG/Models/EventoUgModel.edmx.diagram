@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="271733bc1aa4435fae8125128811c43e" Name="Diagram1">
+        <EntityTypeShape EntityType="dbEventosUGModel.Administrativo" Width="1.5" PointX="3" PointY="12.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbEventosUGModel.Cabecera_Matricula" Width="1.5" PointX="5.25" PointY="23.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbEventosUGModel.Carrera" Width="1.5" PointX="3" PointY="18.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbEventosUGModel.Catalogo_Preferencias" Width="1.5" PointX="3" PointY="23.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbEventosUGModel.Cursos" Width="1.5" PointX="6" PointY="14.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbEventosUGModel.Docentes" Width="1.5" PointX="6" PointY="11.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbEventosUGModel.Estados" Width="1.5" PointX="0.75" PointY="18.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbEventosUGModel.Estudiantes" Width="1.5" PointX="3" PointY="29.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbEventosUGModel.Evento" Width="1.5" PointX="3" PointY="33" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbEventosUGModel.Facultad" Width="1.5" PointX="7.5" PointY="24.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbEventosUGModel.Materias" Width="1.5" PointX="10.5" PointY="24.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbEventosUGModel.Perfiles" Width="1.5" PointX="3" PointY="36.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbEventosUGModel.Preferencia" Width="1.5" PointX="5.25" PointY="19.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbEventosUGModel.Ubicacion" Width="1.5" PointX="7.5" PointY="28.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbEventosUGModel.Usuarios" Width="1.5" PointX="5.25" PointY="28.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbEventosUGModel.Detalle_Matricula" Width="1.5" PointX="8.25" PointY="19.5" IsExpanded="true" />
+        <AssociationConnector Association="dbEventosUGModel.FK_Administrativo_Estados" ManuallyRouted="false" />
+        <AssociationConnector Association="dbEventosUGModel.FK_Cabecera_Matricula_Carrera" ManuallyRouted="false" />
+        <AssociationConnector Association="dbEventosUGModel.FK_Cabecera_Matricula_Estados" ManuallyRouted="false" />
+        <AssociationConnector Association="dbEventosUGModel.FK_Cabecera_Matricula_Estudiantes" ManuallyRouted="false" />
+        <AssociationConnector Association="dbEventosUGModel.FK_Cabecera_Matricula_Usuarios" ManuallyRouted="false" />
+        <AssociationConnector Association="dbEventosUGModel.FK_Detalle_Matricula_Cabecera_Matricula" ManuallyRouted="false" />
+        <AssociationConnector Association="dbEventosUGModel.FK_Carrera_Estados" ManuallyRouted="false" />
+        <AssociationConnector Association="dbEventosUGModel.FK_Carrera_Facultad" ManuallyRouted="false" />
+        <AssociationConnector Association="dbEventosUGModel.FK_Carrera_Usuarios" ManuallyRouted="false" />
+        <AssociationConnector Association="dbEventosUGModel.FK_Catalogo_Preferencias_Estados" ManuallyRouted="false" />
+        <AssociationConnector Association="dbEventosUGModel.FK_Preferencia_Catalogo_Preferencias" ManuallyRouted="false" />
+        <AssociationConnector Association="dbEventosUGModel.FK_Cursos_Estados" ManuallyRouted="false" />
+        <AssociationConnector Association="dbEventosUGModel.FK_Cursos_Usuarios" ManuallyRouted="false" />
+        <AssociationConnector Association="dbEventosUGModel.FK_Detalle_Matricula_Cursos" ManuallyRouted="false" />
+        <AssociationConnector Association="dbEventosUGModel.FK_Detalle_Matricula_Docentes" ManuallyRouted="false" />
+        <AssociationConnector Association="dbEventosUGModel.FK_Detalle_Matricula_Estados" ManuallyRouted="false" />
+        <AssociationConnector Association="dbEventosUGModel.FK_estado_estado" ManuallyRouted="false" />
+        <AssociationConnector Association="dbEventosUGModel.FK_Estudiantes_Estados" ManuallyRouted="false" />
+        <AssociationConnector Association="dbEventosUGModel.FK_Evento_Estados" ManuallyRouted="false" />
+        <AssociationConnector Association="dbEventosUGModel.FK_Facultad_Estados" ManuallyRouted="false" />
+        <AssociationConnector Association="dbEventosUGModel.FK_Materias_Estados" ManuallyRouted="false" />
+        <AssociationConnector Association="dbEventosUGModel.FK_Preferencia_Estados" ManuallyRouted="false" />
+        <AssociationConnector Association="dbEventosUGModel.FK_Ubicacion_Estados" ManuallyRouted="false" />
+        <AssociationConnector Association="dbEventosUGModel.FK_Usuarios_Estados" ManuallyRouted="false" />
+        <AssociationConnector Association="dbEventosUGModel.FK_Facultad_Usuarios" ManuallyRouted="false" />
+        <AssociationConnector Association="dbEventosUGModel.FK_Detalle_Matricula_Materias" ManuallyRouted="false" />
+        <AssociationConnector Association="dbEventosUGModel.FK_Materias_Usuarios" ManuallyRouted="false" />
+        <AssociationConnector Association="dbEventosUGModel.FK_Perfiles_Usuarios" ManuallyRouted="false" />
+        <AssociationConnector Association="dbEventosUGModel.FK_Usuarios_Perfiles" ManuallyRouted="false" />
+        <AssociationConnector Association="dbEventosUGModel.FK_Preferencia_Usuarios" ManuallyRouted="false" />
+        <AssociationConnector Association="dbEventosUGModel.FK_Preferencia_Usuarios1" ManuallyRouted="false" />
+        <AssociationConnector Association="dbEventosUGModel.FK_Ubicacion_Usuarios" ManuallyRouted="false" />
+        <AssociationConnector Association="dbEventosUGModel.FK_Usuarios_Creacion" ManuallyRouted="false" />
+        <AssociationConnector Association="dbEventosUGModel.FK_Evento_Catalogo_Preferencias" />
+        <AssociationConnector Association="dbEventosUGModel.FK_Evento_Usuarios" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,1897 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="dbEventosUGModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Administrativo">
+          <Key>
+            <PropertyRef Name="id_administrativo" />
+          </Key>
+          <Property Name="id_administrativo" Type="int" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="apellido" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="correo" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="estado" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Cabecera_Matricula">
+          <Key>
+            <PropertyRef Name="id_matricula" />
+          </Key>
+          <Property Name="id_matricula" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_estudiante" Type="int" Nullable="false" />
+          <Property Name="id_carrera" Type="int" Nullable="false" />
+          <Property Name="usuario_creacion" Type="int" Nullable="false" />
+          <Property Name="fecha_creacion" Type="date" Nullable="false" />
+          <Property Name="fecha_modificacion" Type="date" Nullable="false" />
+          <Property Name="esatdo_matricula" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Carrera">
+          <Key>
+            <PropertyRef Name="id_carrera" />
+          </Key>
+          <Property Name="id_carrera" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_facultad" Type="int" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="fecha_creacion" Type="date" Nullable="false" />
+          <Property Name="fecha_modificacion" Type="date" Nullable="false" />
+          <Property Name="usuario_creacion" Type="int" Nullable="false" />
+          <Property Name="estado" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Catalogo_Preferencias">
+          <Key>
+            <PropertyRef Name="id_preferencia" />
+          </Key>
+          <Property Name="id_preferencia" Type="int" Nullable="false" />
+          <Property Name="detalle" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="estado" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Cursos">
+          <Key>
+            <PropertyRef Name="id_curso" />
+          </Key>
+          <Property Name="id_curso" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="usuario_creacion" Type="int" Nullable="false" />
+          <Property Name="fecha_creacion" Type="date" Nullable="false" />
+          <Property Name="fecha_modificacion" Type="date" Nullable="false" />
+          <Property Name="estado" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'dbEventosUG.dbo.Detalle_Matricula' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="Detalle_Matricula">
+          <Key>
+            <PropertyRef Name="id_materia" />
+            <PropertyRef Name="id_docente" />
+            <PropertyRef Name="id_matricula" />
+            <PropertyRef Name="id_curso" />
+            <PropertyRef Name="estado_materia" />
+          </Key>
+          <Property Name="id_materia" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_docente" Type="int" Nullable="false" />
+          <Property Name="id_matricula" Type="int" Nullable="false" />
+          <Property Name="id_curso" Type="int" Nullable="false" />
+          <Property Name="estado_materia" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Docentes">
+          <Key>
+            <PropertyRef Name="id_docente" />
+          </Key>
+          <Property Name="id_docente" Type="int" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="apellido" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="correo" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="estado" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Estados">
+          <Key>
+            <PropertyRef Name="id_esatdo" />
+          </Key>
+          <Property Name="id_esatdo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="detalle" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Estudiantes">
+          <Key>
+            <PropertyRef Name="identificacion" />
+          </Key>
+          <Property Name="identificacion" Type="int" Nullable="false" />
+          <Property Name="id_carrera" Type="int" Nullable="false" />
+          <Property Name="id_curso" Type="int" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="apellido" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="correo" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="estado" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Evento">
+          <Key>
+            <PropertyRef Name="id_evento" />
+          </Key>
+          <Property Name="id_evento" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_preferencia" Type="int" Nullable="false" />
+          <Property Name="Titulo" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Detalle" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="fecha_inicio" Type="date" Nullable="false" />
+          <Property Name="fecha_fin" Type="date" Nullable="false" />
+          <Property Name="fecha_creacion" Type="date" Nullable="false" />
+          <Property Name="fecha_modificacion" Type="date" Nullable="false" />
+          <Property Name="usuario_creacion" Type="int" Nullable="false" />
+          <Property Name="estado" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Facultad">
+          <Key>
+            <PropertyRef Name="id_facultad" />
+          </Key>
+          <Property Name="id_facultad" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="50" />
+          <Property Name="fecha_creacion" Type="date" />
+          <Property Name="fecha_modificacion" Type="date" />
+          <Property Name="usuario_creacion" Type="int" />
+          <Property Name="estado" Type="int" />
+        </EntityType>
+        <EntityType Name="Materias">
+          <Key>
+            <PropertyRef Name="id_materia" />
+          </Key>
+          <Property Name="id_materia" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="fecha_creacion" Type="date" Nullable="false" />
+          <Property Name="fecha_modificacion" Type="date" Nullable="false" />
+          <Property Name="usuario_creacion" Type="int" Nullable="false" />
+          <Property Name="estado" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Perfiles">
+          <Key>
+            <PropertyRef Name="id_perfil" />
+          </Key>
+          <Property Name="id_perfil" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="usuario_creacion" Type="int" Nullable="false" />
+          <Property Name="fecha_creacion" Type="date" Nullable="false" />
+          <Property Name="fecha_modificacion" Type="date" Nullable="false" />
+          <Property Name="estado" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Preferencia">
+          <Key>
+            <PropertyRef Name="id_preferencia" />
+          </Key>
+          <Property Name="id_preferencia" Type="int" Nullable="false" />
+          <Property Name="id_usuario" Type="int" Nullable="false" />
+          <Property Name="id_estado" Type="int" Nullable="false" />
+          <Property Name="fecha_creacion" Type="date" Nullable="false" />
+          <Property Name="fecha_modificacion" Type="date" Nullable="false" />
+          <Property Name="usuario_creacion" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Ubicacion">
+          <Key>
+            <PropertyRef Name="id_ubicacion" />
+          </Key>
+          <Property Name="id_ubicacion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_usuario" Type="int" Nullable="false" />
+          <Property Name="actual_lat" Type="float" Nullable="false" />
+          <Property Name="actual_long" Type="float" Nullable="false" />
+          <Property Name="actual_ubicacion" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="temp_lat" Type="float" Nullable="false" />
+          <Property Name="temp_long" Type="float" Nullable="false" />
+          <Property Name="temp_ubicacion" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="estado" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Usuarios">
+          <Key>
+            <PropertyRef Name="id_usuario" />
+          </Key>
+          <Property Name="id_usuario" Type="int" Nullable="false" />
+          <Property Name="id_perfil" Type="int" Nullable="false" />
+          <Property Name="clave" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="fecha_creacion" Type="date" Nullable="false" />
+          <Property Name="fecha_modificacion" Type="date" Nullable="false" />
+          <Property Name="usuario_creacion" Type="int" Nullable="false" />
+          <Property Name="estado" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Administrativo_Estados">
+          <End Role="Estados" Type="Self.Estados" Multiplicity="1" />
+          <End Role="Administrativo" Type="Self.Administrativo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estados">
+              <PropertyRef Name="id_esatdo" />
+            </Principal>
+            <Dependent Role="Administrativo">
+              <PropertyRef Name="estado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cabecera_Matricula_Carrera">
+          <End Role="Carrera" Type="Self.Carrera" Multiplicity="1" />
+          <End Role="Cabecera_Matricula" Type="Self.Cabecera_Matricula" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Carrera">
+              <PropertyRef Name="id_carrera" />
+            </Principal>
+            <Dependent Role="Cabecera_Matricula">
+              <PropertyRef Name="id_carrera" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cabecera_Matricula_Estados">
+          <End Role="Estados" Type="Self.Estados" Multiplicity="1" />
+          <End Role="Cabecera_Matricula" Type="Self.Cabecera_Matricula" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estados">
+              <PropertyRef Name="id_esatdo" />
+            </Principal>
+            <Dependent Role="Cabecera_Matricula">
+              <PropertyRef Name="esatdo_matricula" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cabecera_Matricula_Estudiantes">
+          <End Role="Estudiantes" Type="Self.Estudiantes" Multiplicity="1" />
+          <End Role="Cabecera_Matricula" Type="Self.Cabecera_Matricula" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estudiantes">
+              <PropertyRef Name="identificacion" />
+            </Principal>
+            <Dependent Role="Cabecera_Matricula">
+              <PropertyRef Name="id_estudiante" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cabecera_Matricula_Usuarios">
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="1" />
+          <End Role="Cabecera_Matricula" Type="Self.Cabecera_Matricula" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="id_usuario" />
+            </Principal>
+            <Dependent Role="Cabecera_Matricula">
+              <PropertyRef Name="usuario_creacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Carrera_Estados">
+          <End Role="Estados" Type="Self.Estados" Multiplicity="1" />
+          <End Role="Carrera" Type="Self.Carrera" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estados">
+              <PropertyRef Name="id_esatdo" />
+            </Principal>
+            <Dependent Role="Carrera">
+              <PropertyRef Name="estado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Carrera_Facultad">
+          <End Role="Facultad" Type="Self.Facultad" Multiplicity="1" />
+          <End Role="Carrera" Type="Self.Carrera" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Facultad">
+              <PropertyRef Name="id_facultad" />
+            </Principal>
+            <Dependent Role="Carrera">
+              <PropertyRef Name="id_facultad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Carrera_Usuarios">
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="1" />
+          <End Role="Carrera" Type="Self.Carrera" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="id_usuario" />
+            </Principal>
+            <Dependent Role="Carrera">
+              <PropertyRef Name="usuario_creacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Catalogo_Preferencias_Estados">
+          <End Role="Estados" Type="Self.Estados" Multiplicity="1" />
+          <End Role="Catalogo_Preferencias" Type="Self.Catalogo_Preferencias" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estados">
+              <PropertyRef Name="id_esatdo" />
+            </Principal>
+            <Dependent Role="Catalogo_Preferencias">
+              <PropertyRef Name="estado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cursos_Estados">
+          <End Role="Estados" Type="Self.Estados" Multiplicity="1" />
+          <End Role="Cursos" Type="Self.Cursos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estados">
+              <PropertyRef Name="id_esatdo" />
+            </Principal>
+            <Dependent Role="Cursos">
+              <PropertyRef Name="estado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cursos_Usuarios">
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="1" />
+          <End Role="Cursos" Type="Self.Cursos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="id_usuario" />
+            </Principal>
+            <Dependent Role="Cursos">
+              <PropertyRef Name="usuario_creacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Detalle_Matricula_Cabecera_Matricula">
+          <End Role="Cabecera_Matricula" Type="Self.Cabecera_Matricula" Multiplicity="1" />
+          <End Role="Detalle_Matricula" Type="Self.Detalle_Matricula" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cabecera_Matricula">
+              <PropertyRef Name="id_matricula" />
+            </Principal>
+            <Dependent Role="Detalle_Matricula">
+              <PropertyRef Name="id_matricula" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Detalle_Matricula_Cursos">
+          <End Role="Cursos" Type="Self.Cursos" Multiplicity="1" />
+          <End Role="Detalle_Matricula" Type="Self.Detalle_Matricula" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cursos">
+              <PropertyRef Name="id_curso" />
+            </Principal>
+            <Dependent Role="Detalle_Matricula">
+              <PropertyRef Name="id_curso" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Detalle_Matricula_Docentes">
+          <End Role="Docentes" Type="Self.Docentes" Multiplicity="1" />
+          <End Role="Detalle_Matricula" Type="Self.Detalle_Matricula" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Docentes">
+              <PropertyRef Name="id_docente" />
+            </Principal>
+            <Dependent Role="Detalle_Matricula">
+              <PropertyRef Name="id_docente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Detalle_Matricula_Estados">
+          <End Role="Estados" Type="Self.Estados" Multiplicity="1" />
+          <End Role="Detalle_Matricula" Type="Self.Detalle_Matricula" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estados">
+              <PropertyRef Name="id_esatdo" />
+            </Principal>
+            <Dependent Role="Detalle_Matricula">
+              <PropertyRef Name="estado_materia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Detalle_Matricula_Materias">
+          <End Role="Materias" Type="Self.Materias" Multiplicity="1" />
+          <End Role="Detalle_Matricula" Type="Self.Detalle_Matricula" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Materias">
+              <PropertyRef Name="id_materia" />
+            </Principal>
+            <Dependent Role="Detalle_Matricula">
+              <PropertyRef Name="id_materia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_estado_estado">
+          <End Role="Estados" Type="Self.Estados" Multiplicity="1" />
+          <End Role="Perfiles" Type="Self.Perfiles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estados">
+              <PropertyRef Name="id_esatdo" />
+            </Principal>
+            <Dependent Role="Perfiles">
+              <PropertyRef Name="estado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Estudiantes_Estados">
+          <End Role="Estados" Type="Self.Estados" Multiplicity="1" />
+          <End Role="Estudiantes" Type="Self.Estudiantes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estados">
+              <PropertyRef Name="id_esatdo" />
+            </Principal>
+            <Dependent Role="Estudiantes">
+              <PropertyRef Name="estado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Evento_Catalogo_Preferencias">
+          <End Role="Catalogo_Preferencias" Type="Self.Catalogo_Preferencias" Multiplicity="1" />
+          <End Role="Evento" Type="Self.Evento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Catalogo_Preferencias">
+              <PropertyRef Name="id_preferencia" />
+            </Principal>
+            <Dependent Role="Evento">
+              <PropertyRef Name="id_preferencia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Evento_Estados">
+          <End Role="Estados" Type="Self.Estados" Multiplicity="1" />
+          <End Role="Evento" Type="Self.Evento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estados">
+              <PropertyRef Name="id_esatdo" />
+            </Principal>
+            <Dependent Role="Evento">
+              <PropertyRef Name="estado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Evento_Usuarios">
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="1" />
+          <End Role="Evento" Type="Self.Evento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="id_usuario" />
+            </Principal>
+            <Dependent Role="Evento">
+              <PropertyRef Name="usuario_creacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Facultad_Estados">
+          <End Role="Estados" Type="Self.Estados" Multiplicity="0..1" />
+          <End Role="Facultad" Type="Self.Facultad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estados">
+              <PropertyRef Name="id_esatdo" />
+            </Principal>
+            <Dependent Role="Facultad">
+              <PropertyRef Name="estado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Facultad_Usuarios">
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="0..1" />
+          <End Role="Facultad" Type="Self.Facultad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="id_usuario" />
+            </Principal>
+            <Dependent Role="Facultad">
+              <PropertyRef Name="usuario_creacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Materias_Estados">
+          <End Role="Estados" Type="Self.Estados" Multiplicity="1" />
+          <End Role="Materias" Type="Self.Materias" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estados">
+              <PropertyRef Name="id_esatdo" />
+            </Principal>
+            <Dependent Role="Materias">
+              <PropertyRef Name="estado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Materias_Usuarios">
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="1" />
+          <End Role="Materias" Type="Self.Materias" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="id_usuario" />
+            </Principal>
+            <Dependent Role="Materias">
+              <PropertyRef Name="usuario_creacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Perfiles_Usuarios">
+          <End Role="Perfiles" Type="Self.Perfiles" Multiplicity="1" />
+          <End Role="Perfiles1" Type="Self.Perfiles" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Perfiles">
+              <PropertyRef Name="id_perfil" />
+            </Principal>
+            <Dependent Role="Perfiles1">
+              <PropertyRef Name="id_perfil" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Preferencia_Catalogo_Preferencias">
+          <End Role="Catalogo_Preferencias" Type="Self.Catalogo_Preferencias" Multiplicity="1" />
+          <End Role="Preferencia" Type="Self.Preferencia" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Catalogo_Preferencias">
+              <PropertyRef Name="id_preferencia" />
+            </Principal>
+            <Dependent Role="Preferencia">
+              <PropertyRef Name="id_preferencia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Preferencia_Estados">
+          <End Role="Estados" Type="Self.Estados" Multiplicity="1" />
+          <End Role="Preferencia" Type="Self.Preferencia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estados">
+              <PropertyRef Name="id_esatdo" />
+            </Principal>
+            <Dependent Role="Preferencia">
+              <PropertyRef Name="id_estado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Preferencia_Usuarios">
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="1" />
+          <End Role="Preferencia" Type="Self.Preferencia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="id_usuario" />
+            </Principal>
+            <Dependent Role="Preferencia">
+              <PropertyRef Name="id_usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Preferencia_Usuarios1">
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="1" />
+          <End Role="Preferencia" Type="Self.Preferencia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="id_usuario" />
+            </Principal>
+            <Dependent Role="Preferencia">
+              <PropertyRef Name="usuario_creacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ubicacion_Estados">
+          <End Role="Estados" Type="Self.Estados" Multiplicity="1" />
+          <End Role="Ubicacion" Type="Self.Ubicacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estados">
+              <PropertyRef Name="id_esatdo" />
+            </Principal>
+            <Dependent Role="Ubicacion">
+              <PropertyRef Name="estado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ubicacion_Usuarios">
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="1" />
+          <End Role="Ubicacion" Type="Self.Ubicacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="id_usuario" />
+            </Principal>
+            <Dependent Role="Ubicacion">
+              <PropertyRef Name="id_usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Usuarios_Creacion">
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="1" />
+          <End Role="Usuarios1" Type="Self.Usuarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="id_usuario" />
+            </Principal>
+            <Dependent Role="Usuarios1">
+              <PropertyRef Name="usuario_creacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Usuarios_Estados">
+          <End Role="Estados" Type="Self.Estados" Multiplicity="1" />
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estados">
+              <PropertyRef Name="id_esatdo" />
+            </Principal>
+            <Dependent Role="Usuarios">
+              <PropertyRef Name="estado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Usuarios_Perfiles">
+          <End Role="Perfiles" Type="Self.Perfiles" Multiplicity="1" />
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Perfiles">
+              <PropertyRef Name="id_perfil" />
+            </Principal>
+            <Dependent Role="Usuarios">
+              <PropertyRef Name="id_perfil" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="spConsultarEventos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id_usuario" Type="int" Mode="In" />
+          <Parameter Name="id_evento" Type="int" Mode="In" />
+        </Function>
+        <Function Name="spConsultarLogin" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="correo" Type="varchar" Mode="In" />
+          <Parameter Name="clave" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="spInsertarEvento" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id_preferencia" Type="int" Mode="In" />
+          <Parameter Name="Titulo" Type="varchar" Mode="In" />
+          <Parameter Name="Detalle" Type="varchar" Mode="In" />
+          <Parameter Name="fecha_inicio" Type="date" Mode="In" />
+          <Parameter Name="fecha_fin" Type="date" Mode="In" />
+          <Parameter Name="usuario_creacion" Type="int" Mode="In" />
+        </Function>
+        <EntityContainer Name="dbEventosUGModelStoreContainer">
+          <EntitySet Name="Administrativo" EntityType="Self.Administrativo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cabecera_Matricula" EntityType="Self.Cabecera_Matricula" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Carrera" EntityType="Self.Carrera" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Catalogo_Preferencias" EntityType="Self.Catalogo_Preferencias" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cursos" EntityType="Self.Cursos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Docentes" EntityType="Self.Docentes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Estados" EntityType="Self.Estados" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Estudiantes" EntityType="Self.Estudiantes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Evento" EntityType="Self.Evento" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Facultad" EntityType="Self.Facultad" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Materias" EntityType="Self.Materias" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Perfiles" EntityType="Self.Perfiles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Preferencia" EntityType="Self.Preferencia" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Ubicacion" EntityType="Self.Ubicacion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Usuarios" EntityType="Self.Usuarios" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Detalle_Matricula" EntityType="Self.Detalle_Matricula" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Detalle_Matricula].[id_materia] AS [id_materia], 
+    [Detalle_Matricula].[id_docente] AS [id_docente], 
+    [Detalle_Matricula].[id_matricula] AS [id_matricula], 
+    [Detalle_Matricula].[id_curso] AS [id_curso], 
+    [Detalle_Matricula].[estado_materia] AS [estado_materia]
+    FROM [dbo].[Detalle_Matricula] AS [Detalle_Matricula]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_Administrativo_Estados" Association="Self.FK_Administrativo_Estados">
+            <End Role="Estados" EntitySet="Estados" />
+            <End Role="Administrativo" EntitySet="Administrativo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cabecera_Matricula_Carrera" Association="Self.FK_Cabecera_Matricula_Carrera">
+            <End Role="Carrera" EntitySet="Carrera" />
+            <End Role="Cabecera_Matricula" EntitySet="Cabecera_Matricula" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cabecera_Matricula_Estados" Association="Self.FK_Cabecera_Matricula_Estados">
+            <End Role="Estados" EntitySet="Estados" />
+            <End Role="Cabecera_Matricula" EntitySet="Cabecera_Matricula" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cabecera_Matricula_Estudiantes" Association="Self.FK_Cabecera_Matricula_Estudiantes">
+            <End Role="Estudiantes" EntitySet="Estudiantes" />
+            <End Role="Cabecera_Matricula" EntitySet="Cabecera_Matricula" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cabecera_Matricula_Usuarios" Association="Self.FK_Cabecera_Matricula_Usuarios">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="Cabecera_Matricula" EntitySet="Cabecera_Matricula" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Carrera_Estados" Association="Self.FK_Carrera_Estados">
+            <End Role="Estados" EntitySet="Estados" />
+            <End Role="Carrera" EntitySet="Carrera" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Carrera_Facultad" Association="Self.FK_Carrera_Facultad">
+            <End Role="Facultad" EntitySet="Facultad" />
+            <End Role="Carrera" EntitySet="Carrera" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Carrera_Usuarios" Association="Self.FK_Carrera_Usuarios">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="Carrera" EntitySet="Carrera" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Catalogo_Preferencias_Estados" Association="Self.FK_Catalogo_Preferencias_Estados">
+            <End Role="Estados" EntitySet="Estados" />
+            <End Role="Catalogo_Preferencias" EntitySet="Catalogo_Preferencias" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cursos_Estados" Association="Self.FK_Cursos_Estados">
+            <End Role="Estados" EntitySet="Estados" />
+            <End Role="Cursos" EntitySet="Cursos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cursos_Usuarios" Association="Self.FK_Cursos_Usuarios">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="Cursos" EntitySet="Cursos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Detalle_Matricula_Cabecera_Matricula" Association="Self.FK_Detalle_Matricula_Cabecera_Matricula">
+            <End Role="Cabecera_Matricula" EntitySet="Cabecera_Matricula" />
+            <End Role="Detalle_Matricula" EntitySet="Detalle_Matricula" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Detalle_Matricula_Cursos" Association="Self.FK_Detalle_Matricula_Cursos">
+            <End Role="Cursos" EntitySet="Cursos" />
+            <End Role="Detalle_Matricula" EntitySet="Detalle_Matricula" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Detalle_Matricula_Docentes" Association="Self.FK_Detalle_Matricula_Docentes">
+            <End Role="Docentes" EntitySet="Docentes" />
+            <End Role="Detalle_Matricula" EntitySet="Detalle_Matricula" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Detalle_Matricula_Estados" Association="Self.FK_Detalle_Matricula_Estados">
+            <End Role="Estados" EntitySet="Estados" />
+            <End Role="Detalle_Matricula" EntitySet="Detalle_Matricula" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Detalle_Matricula_Materias" Association="Self.FK_Detalle_Matricula_Materias">
+            <End Role="Materias" EntitySet="Materias" />
+            <End Role="Detalle_Matricula" EntitySet="Detalle_Matricula" />
+          </AssociationSet>
+          <AssociationSet Name="FK_estado_estado" Association="Self.FK_estado_estado">
+            <End Role="Estados" EntitySet="Estados" />
+            <End Role="Perfiles" EntitySet="Perfiles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Estudiantes_Estados" Association="Self.FK_Estudiantes_Estados">
+            <End Role="Estados" EntitySet="Estados" />
+            <End Role="Estudiantes" EntitySet="Estudiantes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Evento_Catalogo_Preferencias" Association="Self.FK_Evento_Catalogo_Preferencias">
+            <End Role="Catalogo_Preferencias" EntitySet="Catalogo_Preferencias" />
+            <End Role="Evento" EntitySet="Evento" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Evento_Estados" Association="Self.FK_Evento_Estados">
+            <End Role="Estados" EntitySet="Estados" />
+            <End Role="Evento" EntitySet="Evento" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Evento_Usuarios" Association="Self.FK_Evento_Usuarios">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="Evento" EntitySet="Evento" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Facultad_Estados" Association="Self.FK_Facultad_Estados">
+            <End Role="Estados" EntitySet="Estados" />
+            <End Role="Facultad" EntitySet="Facultad" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Facultad_Usuarios" Association="Self.FK_Facultad_Usuarios">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="Facultad" EntitySet="Facultad" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Materias_Estados" Association="Self.FK_Materias_Estados">
+            <End Role="Estados" EntitySet="Estados" />
+            <End Role="Materias" EntitySet="Materias" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Materias_Usuarios" Association="Self.FK_Materias_Usuarios">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="Materias" EntitySet="Materias" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Perfiles_Usuarios" Association="Self.FK_Perfiles_Usuarios">
+            <End Role="Perfiles" EntitySet="Perfiles" />
+            <End Role="Perfiles1" EntitySet="Perfiles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Preferencia_Catalogo_Preferencias" Association="Self.FK_Preferencia_Catalogo_Preferencias">
+            <End Role="Catalogo_Preferencias" EntitySet="Catalogo_Preferencias" />
+            <End Role="Preferencia" EntitySet="Preferencia" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Preferencia_Estados" Association="Self.FK_Preferencia_Estados">
+            <End Role="Estados" EntitySet="Estados" />
+            <End Role="Preferencia" EntitySet="Preferencia" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Preferencia_Usuarios" Association="Self.FK_Preferencia_Usuarios">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="Preferencia" EntitySet="Preferencia" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Preferencia_Usuarios1" Association="Self.FK_Preferencia_Usuarios1">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="Preferencia" EntitySet="Preferencia" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ubicacion_Estados" Association="Self.FK_Ubicacion_Estados">
+            <End Role="Estados" EntitySet="Estados" />
+            <End Role="Ubicacion" EntitySet="Ubicacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ubicacion_Usuarios" Association="Self.FK_Ubicacion_Usuarios">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="Ubicacion" EntitySet="Ubicacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Usuarios_Creacion" Association="Self.FK_Usuarios_Creacion">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="Usuarios1" EntitySet="Usuarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Usuarios_Estados" Association="Self.FK_Usuarios_Estados">
+            <End Role="Estados" EntitySet="Estados" />
+            <End Role="Usuarios" EntitySet="Usuarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Usuarios_Perfiles" Association="Self.FK_Usuarios_Perfiles">
+            <End Role="Perfiles" EntitySet="Perfiles" />
+            <End Role="Usuarios" EntitySet="Usuarios" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="dbEventosUGModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Administrativo">
+          <Key>
+            <PropertyRef Name="id_administrativo" />
+          </Key>
+          <Property Name="id_administrativo" Type="Int32" Nullable="false" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="apellido" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="correo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="estado" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Estados" Relationship="Self.FK_Administrativo_Estados" FromRole="Administrativo" ToRole="Estados" />
+        </EntityType>
+        <EntityType Name="Cabecera_Matricula">
+          <Key>
+            <PropertyRef Name="id_matricula" />
+          </Key>
+          <Property Name="id_matricula" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_estudiante" Type="Int32" Nullable="false" />
+          <Property Name="id_carrera" Type="Int32" Nullable="false" />
+          <Property Name="usuario_creacion" Type="Int32" Nullable="false" />
+          <Property Name="fecha_creacion" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="fecha_modificacion" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="esatdo_matricula" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Carrera" Relationship="Self.FK_Cabecera_Matricula_Carrera" FromRole="Cabecera_Matricula" ToRole="Carrera" />
+          <NavigationProperty Name="Estados" Relationship="Self.FK_Cabecera_Matricula_Estados" FromRole="Cabecera_Matricula" ToRole="Estados" />
+          <NavigationProperty Name="Estudiantes" Relationship="Self.FK_Cabecera_Matricula_Estudiantes" FromRole="Cabecera_Matricula" ToRole="Estudiantes" />
+          <NavigationProperty Name="Usuarios" Relationship="Self.FK_Cabecera_Matricula_Usuarios" FromRole="Cabecera_Matricula" ToRole="Usuarios" />
+          <NavigationProperty Name="Detalle_Matricula" Relationship="Self.FK_Detalle_Matricula_Cabecera_Matricula" FromRole="Cabecera_Matricula" ToRole="Detalle_Matricula" />
+        </EntityType>
+        <EntityType Name="Carrera">
+          <Key>
+            <PropertyRef Name="id_carrera" />
+          </Key>
+          <Property Name="id_carrera" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_facultad" Type="Int32" Nullable="false" />
+          <Property Name="descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="fecha_creacion" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="fecha_modificacion" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="usuario_creacion" Type="Int32" Nullable="false" />
+          <Property Name="estado" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Cabecera_Matricula" Relationship="Self.FK_Cabecera_Matricula_Carrera" FromRole="Carrera" ToRole="Cabecera_Matricula" />
+          <NavigationProperty Name="Estados" Relationship="Self.FK_Carrera_Estados" FromRole="Carrera" ToRole="Estados" />
+          <NavigationProperty Name="Facultad" Relationship="Self.FK_Carrera_Facultad" FromRole="Carrera" ToRole="Facultad" />
+          <NavigationProperty Name="Usuarios" Relationship="Self.FK_Carrera_Usuarios" FromRole="Carrera" ToRole="Usuarios" />
+        </EntityType>
+        <EntityType Name="Catalogo_Preferencias">
+          <Key>
+            <PropertyRef Name="id_preferencia" />
+          </Key>
+          <Property Name="id_preferencia" Type="Int32" Nullable="false" />
+          <Property Name="detalle" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="estado" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Estados" Relationship="Self.FK_Catalogo_Preferencias_Estados" FromRole="Catalogo_Preferencias" ToRole="Estados" />
+          <NavigationProperty Name="Preferencia" Relationship="Self.FK_Preferencia_Catalogo_Preferencias" FromRole="Catalogo_Preferencias" ToRole="Preferencia" />
+          <NavigationProperty Name="Evento" Relationship="dbEventosUGModel.FK_Evento_Catalogo_Preferencias" FromRole="Catalogo_Preferencias" ToRole="Evento" />
+        </EntityType>
+        <EntityType Name="Cursos">
+          <Key>
+            <PropertyRef Name="id_curso" />
+          </Key>
+          <Property Name="id_curso" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="usuario_creacion" Type="Int32" Nullable="false" />
+          <Property Name="fecha_creacion" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="fecha_modificacion" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="estado" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Estados" Relationship="Self.FK_Cursos_Estados" FromRole="Cursos" ToRole="Estados" />
+          <NavigationProperty Name="Usuarios" Relationship="Self.FK_Cursos_Usuarios" FromRole="Cursos" ToRole="Usuarios" />
+          <NavigationProperty Name="Detalle_Matricula" Relationship="Self.FK_Detalle_Matricula_Cursos" FromRole="Cursos" ToRole="Detalle_Matricula" />
+        </EntityType>
+        <EntityType Name="Docentes">
+          <Key>
+            <PropertyRef Name="id_docente" />
+          </Key>
+          <Property Name="id_docente" Type="Int32" Nullable="false" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="apellido" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="correo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="estado" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Detalle_Matricula" Relationship="Self.FK_Detalle_Matricula_Docentes" FromRole="Docentes" ToRole="Detalle_Matricula" />
+        </EntityType>
+        <EntityType Name="Estados">
+          <Key>
+            <PropertyRef Name="id_esatdo" />
+          </Key>
+          <Property Name="id_esatdo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="detalle" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Administrativo" Relationship="Self.FK_Administrativo_Estados" FromRole="Estados" ToRole="Administrativo" />
+          <NavigationProperty Name="Cabecera_Matricula" Relationship="Self.FK_Cabecera_Matricula_Estados" FromRole="Estados" ToRole="Cabecera_Matricula" />
+          <NavigationProperty Name="Carrera" Relationship="Self.FK_Carrera_Estados" FromRole="Estados" ToRole="Carrera" />
+          <NavigationProperty Name="Catalogo_Preferencias" Relationship="Self.FK_Catalogo_Preferencias_Estados" FromRole="Estados" ToRole="Catalogo_Preferencias" />
+          <NavigationProperty Name="Cursos" Relationship="Self.FK_Cursos_Estados" FromRole="Estados" ToRole="Cursos" />
+          <NavigationProperty Name="Detalle_Matricula" Relationship="Self.FK_Detalle_Matricula_Estados" FromRole="Estados" ToRole="Detalle_Matricula" />
+          <NavigationProperty Name="Perfiles" Relationship="Self.FK_estado_estado" FromRole="Estados" ToRole="Perfiles" />
+          <NavigationProperty Name="Estudiantes" Relationship="Self.FK_Estudiantes_Estados" FromRole="Estados" ToRole="Estudiantes" />
+          <NavigationProperty Name="Evento" Relationship="Self.FK_Evento_Estados" FromRole="Estados" ToRole="Evento" />
+          <NavigationProperty Name="Facultad" Relationship="Self.FK_Facultad_Estados" FromRole="Estados" ToRole="Facultad" />
+          <NavigationProperty Name="Materias" Relationship="Self.FK_Materias_Estados" FromRole="Estados" ToRole="Materias" />
+          <NavigationProperty Name="Preferencia" Relationship="Self.FK_Preferencia_Estados" FromRole="Estados" ToRole="Preferencia" />
+          <NavigationProperty Name="Ubicacion" Relationship="Self.FK_Ubicacion_Estados" FromRole="Estados" ToRole="Ubicacion" />
+          <NavigationProperty Name="Usuarios" Relationship="Self.FK_Usuarios_Estados" FromRole="Estados" ToRole="Usuarios" />
+        </EntityType>
+        <EntityType Name="Estudiantes">
+          <Key>
+            <PropertyRef Name="identificacion" />
+          </Key>
+          <Property Name="identificacion" Type="Int32" Nullable="false" />
+          <Property Name="id_carrera" Type="Int32" Nullable="false" />
+          <Property Name="id_curso" Type="Int32" Nullable="false" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="apellido" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="correo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="estado" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Cabecera_Matricula" Relationship="Self.FK_Cabecera_Matricula_Estudiantes" FromRole="Estudiantes" ToRole="Cabecera_Matricula" />
+          <NavigationProperty Name="Estados" Relationship="Self.FK_Estudiantes_Estados" FromRole="Estudiantes" ToRole="Estados" />
+        </EntityType>
+        <EntityType Name="Evento">
+          <Key>
+            <PropertyRef Name="id_evento" />
+          </Key>
+          <Property Name="id_evento" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Titulo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Detalle" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="fecha_inicio" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="fecha_fin" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="fecha_creacion" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="fecha_modificacion" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="usuario_creacion" Type="Int32" Nullable="false" />
+          <Property Name="estado" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Estados" Relationship="Self.FK_Evento_Estados" FromRole="Evento" ToRole="Estados" />
+          <Property Name="id_preferencia" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Catalogo_Preferencias" Relationship="dbEventosUGModel.FK_Evento_Catalogo_Preferencias" FromRole="Evento" ToRole="Catalogo_Preferencias" />
+          <NavigationProperty Name="Usuarios" Relationship="dbEventosUGModel.FK_Evento_Usuarios" FromRole="Evento" ToRole="Usuarios" />
+        </EntityType>
+        <EntityType Name="Facultad">
+          <Key>
+            <PropertyRef Name="id_facultad" />
+          </Key>
+          <Property Name="id_facultad" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="fecha_creacion" Type="DateTime" Precision="0" />
+          <Property Name="fecha_modificacion" Type="DateTime" Precision="0" />
+          <Property Name="usuario_creacion" Type="Int32" />
+          <Property Name="estado" Type="Int32" />
+          <NavigationProperty Name="Carrera" Relationship="Self.FK_Carrera_Facultad" FromRole="Facultad" ToRole="Carrera" />
+          <NavigationProperty Name="Estados" Relationship="Self.FK_Facultad_Estados" FromRole="Facultad" ToRole="Estados" />
+          <NavigationProperty Name="Usuarios" Relationship="Self.FK_Facultad_Usuarios" FromRole="Facultad" ToRole="Usuarios" />
+        </EntityType>
+        <EntityType Name="Materias">
+          <Key>
+            <PropertyRef Name="id_materia" />
+          </Key>
+          <Property Name="id_materia" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="fecha_creacion" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="fecha_modificacion" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="usuario_creacion" Type="Int32" Nullable="false" />
+          <Property Name="estado" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Estados" Relationship="Self.FK_Materias_Estados" FromRole="Materias" ToRole="Estados" />
+          <NavigationProperty Name="Detalle_Matricula" Relationship="Self.FK_Detalle_Matricula_Materias" FromRole="Materias" ToRole="Detalle_Matricula" />
+          <NavigationProperty Name="Usuarios" Relationship="Self.FK_Materias_Usuarios" FromRole="Materias" ToRole="Usuarios" />
+        </EntityType>
+        <EntityType Name="Perfiles">
+          <Key>
+            <PropertyRef Name="id_perfil" />
+          </Key>
+          <Property Name="id_perfil" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="usuario_creacion" Type="Int32" Nullable="false" />
+          <Property Name="fecha_creacion" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="fecha_modificacion" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="estado" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Estados" Relationship="Self.FK_estado_estado" FromRole="Perfiles" ToRole="Estados" />
+          <NavigationProperty Name="Perfiles1" Relationship="Self.FK_Perfiles_Usuarios" FromRole="Perfiles" ToRole="Perfiles1" />
+          <NavigationProperty Name="Perfiles2" Relationship="Self.FK_Perfiles_Usuarios" FromRole="Perfiles1" ToRole="Perfiles" />
+          <NavigationProperty Name="Usuarios" Relationship="Self.FK_Usuarios_Perfiles" FromRole="Perfiles" ToRole="Usuarios" />
+        </EntityType>
+        <EntityType Name="Preferencia">
+          <Key>
+            <PropertyRef Name="id_preferencia" />
+          </Key>
+          <Property Name="id_preferencia" Type="Int32" Nullable="false" />
+          <Property Name="id_usuario" Type="Int32" Nullable="false" />
+          <Property Name="id_estado" Type="Int32" Nullable="false" />
+          <Property Name="fecha_creacion" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="fecha_modificacion" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="usuario_creacion" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Catalogo_Preferencias" Relationship="Self.FK_Preferencia_Catalogo_Preferencias" FromRole="Preferencia" ToRole="Catalogo_Preferencias" />
+          <NavigationProperty Name="Estados" Relationship="Self.FK_Preferencia_Estados" FromRole="Preferencia" ToRole="Estados" />
+          <NavigationProperty Name="Usuarios" Relationship="Self.FK_Preferencia_Usuarios" FromRole="Preferencia" ToRole="Usuarios" />
+          <NavigationProperty Name="Usuarios1" Relationship="Self.FK_Preferencia_Usuarios1" FromRole="Preferencia" ToRole="Usuarios" />
+        </EntityType>
+        <EntityType Name="Ubicacion">
+          <Key>
+            <PropertyRef Name="id_ubicacion" />
+          </Key>
+          <Property Name="id_ubicacion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_usuario" Type="Int32" Nullable="false" />
+          <Property Name="actual_lat" Type="Double" Nullable="false" />
+          <Property Name="actual_long" Type="Double" Nullable="false" />
+          <Property Name="actual_ubicacion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="temp_lat" Type="Double" Nullable="false" />
+          <Property Name="temp_long" Type="Double" Nullable="false" />
+          <Property Name="temp_ubicacion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="estado" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Estados" Relationship="Self.FK_Ubicacion_Estados" FromRole="Ubicacion" ToRole="Estados" />
+          <NavigationProperty Name="Usuarios" Relationship="Self.FK_Ubicacion_Usuarios" FromRole="Ubicacion" ToRole="Usuarios" />
+        </EntityType>
+        <EntityType Name="Usuarios">
+          <Key>
+            <PropertyRef Name="id_usuario" />
+          </Key>
+          <Property Name="id_usuario" Type="Int32" Nullable="false" />
+          <Property Name="id_perfil" Type="Int32" Nullable="false" />
+          <Property Name="clave" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="fecha_creacion" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="fecha_modificacion" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="usuario_creacion" Type="Int32" Nullable="false" />
+          <Property Name="estado" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Cabecera_Matricula" Relationship="Self.FK_Cabecera_Matricula_Usuarios" FromRole="Usuarios" ToRole="Cabecera_Matricula" />
+          <NavigationProperty Name="Carrera" Relationship="Self.FK_Carrera_Usuarios" FromRole="Usuarios" ToRole="Carrera" />
+          <NavigationProperty Name="Cursos" Relationship="Self.FK_Cursos_Usuarios" FromRole="Usuarios" ToRole="Cursos" />
+          <NavigationProperty Name="Estados" Relationship="Self.FK_Usuarios_Estados" FromRole="Usuarios" ToRole="Estados" />
+          <NavigationProperty Name="Facultad" Relationship="Self.FK_Facultad_Usuarios" FromRole="Usuarios" ToRole="Facultad" />
+          <NavigationProperty Name="Materias" Relationship="Self.FK_Materias_Usuarios" FromRole="Usuarios" ToRole="Materias" />
+          <NavigationProperty Name="Perfiles" Relationship="Self.FK_Usuarios_Perfiles" FromRole="Usuarios" ToRole="Perfiles" />
+          <NavigationProperty Name="Preferencia" Relationship="Self.FK_Preferencia_Usuarios" FromRole="Usuarios" ToRole="Preferencia" />
+          <NavigationProperty Name="Preferencia1" Relationship="Self.FK_Preferencia_Usuarios1" FromRole="Usuarios" ToRole="Preferencia" />
+          <NavigationProperty Name="Ubicacion" Relationship="Self.FK_Ubicacion_Usuarios" FromRole="Usuarios" ToRole="Ubicacion" />
+          <NavigationProperty Name="Usuarios1" Relationship="Self.FK_Usuarios_Creacion" FromRole="Usuarios" ToRole="Usuarios1" />
+          <NavigationProperty Name="Usuarios2" Relationship="Self.FK_Usuarios_Creacion" FromRole="Usuarios1" ToRole="Usuarios" />
+          <NavigationProperty Name="Evento" Relationship="dbEventosUGModel.FK_Evento_Usuarios" FromRole="Usuarios" ToRole="Evento" />
+        </EntityType>
+        <EntityType Name="Detalle_Matricula">
+          <Key>
+            <PropertyRef Name="id_materia" />
+            <PropertyRef Name="id_docente" />
+            <PropertyRef Name="id_matricula" />
+            <PropertyRef Name="id_curso" />
+            <PropertyRef Name="estado_materia" />
+          </Key>
+          <Property Name="id_materia" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_docente" Type="Int32" Nullable="false" />
+          <Property Name="id_matricula" Type="Int32" Nullable="false" />
+          <Property Name="id_curso" Type="Int32" Nullable="false" />
+          <Property Name="estado_materia" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Cabecera_Matricula" Relationship="Self.FK_Detalle_Matricula_Cabecera_Matricula" FromRole="Detalle_Matricula" ToRole="Cabecera_Matricula" />
+          <NavigationProperty Name="Cursos" Relationship="Self.FK_Detalle_Matricula_Cursos" FromRole="Detalle_Matricula" ToRole="Cursos" />
+          <NavigationProperty Name="Docentes" Relationship="Self.FK_Detalle_Matricula_Docentes" FromRole="Detalle_Matricula" ToRole="Docentes" />
+          <NavigationProperty Name="Estados" Relationship="Self.FK_Detalle_Matricula_Estados" FromRole="Detalle_Matricula" ToRole="Estados" />
+          <NavigationProperty Name="Materias" Relationship="Self.FK_Detalle_Matricula_Materias" FromRole="Detalle_Matricula" ToRole="Materias" />
+        </EntityType>
+        <Association Name="FK_Administrativo_Estados">
+          <End Role="Estados" Type="Self.Estados" Multiplicity="1" />
+          <End Role="Administrativo" Type="Self.Administrativo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estados">
+              <PropertyRef Name="id_esatdo" />
+            </Principal>
+            <Dependent Role="Administrativo">
+              <PropertyRef Name="estado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cabecera_Matricula_Carrera">
+          <End Role="Carrera" Type="Self.Carrera" Multiplicity="1" />
+          <End Role="Cabecera_Matricula" Type="Self.Cabecera_Matricula" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Carrera">
+              <PropertyRef Name="id_carrera" />
+            </Principal>
+            <Dependent Role="Cabecera_Matricula">
+              <PropertyRef Name="id_carrera" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cabecera_Matricula_Estados">
+          <End Role="Estados" Type="Self.Estados" Multiplicity="1" />
+          <End Role="Cabecera_Matricula" Type="Self.Cabecera_Matricula" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estados">
+              <PropertyRef Name="id_esatdo" />
+            </Principal>
+            <Dependent Role="Cabecera_Matricula">
+              <PropertyRef Name="esatdo_matricula" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cabecera_Matricula_Estudiantes">
+          <End Role="Estudiantes" Type="Self.Estudiantes" Multiplicity="1" />
+          <End Role="Cabecera_Matricula" Type="Self.Cabecera_Matricula" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estudiantes">
+              <PropertyRef Name="identificacion" />
+            </Principal>
+            <Dependent Role="Cabecera_Matricula">
+              <PropertyRef Name="id_estudiante" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cabecera_Matricula_Usuarios">
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="1" />
+          <End Role="Cabecera_Matricula" Type="Self.Cabecera_Matricula" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="id_usuario" />
+            </Principal>
+            <Dependent Role="Cabecera_Matricula">
+              <PropertyRef Name="usuario_creacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Detalle_Matricula_Cabecera_Matricula">
+          <End Role="Cabecera_Matricula" Type="Self.Cabecera_Matricula" Multiplicity="1" />
+          <End Role="Detalle_Matricula" Type="Self.Detalle_Matricula" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cabecera_Matricula">
+              <PropertyRef Name="id_matricula" />
+            </Principal>
+            <Dependent Role="Detalle_Matricula">
+              <PropertyRef Name="id_matricula" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Carrera_Estados">
+          <End Role="Estados" Type="Self.Estados" Multiplicity="1" />
+          <End Role="Carrera" Type="Self.Carrera" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estados">
+              <PropertyRef Name="id_esatdo" />
+            </Principal>
+            <Dependent Role="Carrera">
+              <PropertyRef Name="estado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Carrera_Facultad">
+          <End Role="Facultad" Type="Self.Facultad" Multiplicity="1" />
+          <End Role="Carrera" Type="Self.Carrera" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Facultad">
+              <PropertyRef Name="id_facultad" />
+            </Principal>
+            <Dependent Role="Carrera">
+              <PropertyRef Name="id_facultad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Carrera_Usuarios">
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="1" />
+          <End Role="Carrera" Type="Self.Carrera" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="id_usuario" />
+            </Principal>
+            <Dependent Role="Carrera">
+              <PropertyRef Name="usuario_creacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Catalogo_Preferencias_Estados">
+          <End Role="Estados" Type="Self.Estados" Multiplicity="1" />
+          <End Role="Catalogo_Preferencias" Type="Self.Catalogo_Preferencias" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estados">
+              <PropertyRef Name="id_esatdo" />
+            </Principal>
+            <Dependent Role="Catalogo_Preferencias">
+              <PropertyRef Name="estado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Preferencia_Catalogo_Preferencias">
+          <End Role="Catalogo_Preferencias" Type="Self.Catalogo_Preferencias" Multiplicity="1" />
+          <End Role="Preferencia" Type="Self.Preferencia" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Catalogo_Preferencias">
+              <PropertyRef Name="id_preferencia" />
+            </Principal>
+            <Dependent Role="Preferencia">
+              <PropertyRef Name="id_preferencia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cursos_Estados">
+          <End Role="Estados" Type="Self.Estados" Multiplicity="1" />
+          <End Role="Cursos" Type="Self.Cursos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estados">
+              <PropertyRef Name="id_esatdo" />
+            </Principal>
+            <Dependent Role="Cursos">
+              <PropertyRef Name="estado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cursos_Usuarios">
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="1" />
+          <End Role="Cursos" Type="Self.Cursos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="id_usuario" />
+            </Principal>
+            <Dependent Role="Cursos">
+              <PropertyRef Name="usuario_creacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Detalle_Matricula_Cursos">
+          <End Role="Cursos" Type="Self.Cursos" Multiplicity="1" />
+          <End Role="Detalle_Matricula" Type="Self.Detalle_Matricula" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cursos">
+              <PropertyRef Name="id_curso" />
+            </Principal>
+            <Dependent Role="Detalle_Matricula">
+              <PropertyRef Name="id_curso" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Detalle_Matricula_Docentes">
+          <End Role="Docentes" Type="Self.Docentes" Multiplicity="1" />
+          <End Role="Detalle_Matricula" Type="Self.Detalle_Matricula" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Docentes">
+              <PropertyRef Name="id_docente" />
+            </Principal>
+            <Dependent Role="Detalle_Matricula">
+              <PropertyRef Name="id_docente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Detalle_Matricula_Estados">
+          <End Role="Estados" Type="Self.Estados" Multiplicity="1" />
+          <End Role="Detalle_Matricula" Type="Self.Detalle_Matricula" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estados">
+              <PropertyRef Name="id_esatdo" />
+            </Principal>
+            <Dependent Role="Detalle_Matricula">
+              <PropertyRef Name="estado_materia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_estado_estado">
+          <End Role="Estados" Type="Self.Estados" Multiplicity="1" />
+          <End Role="Perfiles" Type="Self.Perfiles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estados">
+              <PropertyRef Name="id_esatdo" />
+            </Principal>
+            <Dependent Role="Perfiles">
+              <PropertyRef Name="estado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Estudiantes_Estados">
+          <End Role="Estados" Type="Self.Estados" Multiplicity="1" />
+          <End Role="Estudiantes" Type="Self.Estudiantes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estados">
+              <PropertyRef Name="id_esatdo" />
+            </Principal>
+            <Dependent Role="Estudiantes">
+              <PropertyRef Name="estado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Evento_Estados">
+          <End Role="Estados" Type="Self.Estados" Multiplicity="1" />
+          <End Role="Evento" Type="Self.Evento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estados">
+              <PropertyRef Name="id_esatdo" />
+            </Principal>
+            <Dependent Role="Evento">
+              <PropertyRef Name="estado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Facultad_Estados">
+          <End Role="Estados" Type="Self.Estados" Multiplicity="0..1" />
+          <End Role="Facultad" Type="Self.Facultad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estados">
+              <PropertyRef Name="id_esatdo" />
+            </Principal>
+            <Dependent Role="Facultad">
+              <PropertyRef Name="estado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Materias_Estados">
+          <End Role="Estados" Type="Self.Estados" Multiplicity="1" />
+          <End Role="Materias" Type="Self.Materias" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estados">
+              <PropertyRef Name="id_esatdo" />
+            </Principal>
+            <Dependent Role="Materias">
+              <PropertyRef Name="estado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Preferencia_Estados">
+          <End Role="Estados" Type="Self.Estados" Multiplicity="1" />
+          <End Role="Preferencia" Type="Self.Preferencia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estados">
+              <PropertyRef Name="id_esatdo" />
+            </Principal>
+            <Dependent Role="Preferencia">
+              <PropertyRef Name="id_estado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ubicacion_Estados">
+          <End Role="Estados" Type="Self.Estados" Multiplicity="1" />
+          <End Role="Ubicacion" Type="Self.Ubicacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estados">
+              <PropertyRef Name="id_esatdo" />
+            </Principal>
+            <Dependent Role="Ubicacion">
+              <PropertyRef Name="estado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Usuarios_Estados">
+          <End Role="Estados" Type="Self.Estados" Multiplicity="1" />
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estados">
+              <PropertyRef Name="id_esatdo" />
+            </Principal>
+            <Dependent Role="Usuarios">
+              <PropertyRef Name="estado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Facultad_Usuarios">
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="0..1" />
+          <End Role="Facultad" Type="Self.Facultad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="id_usuario" />
+            </Principal>
+            <Dependent Role="Facultad">
+              <PropertyRef Name="usuario_creacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Detalle_Matricula_Materias">
+          <End Role="Materias" Type="Self.Materias" Multiplicity="1" />
+          <End Role="Detalle_Matricula" Type="Self.Detalle_Matricula" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Materias">
+              <PropertyRef Name="id_materia" />
+            </Principal>
+            <Dependent Role="Detalle_Matricula">
+              <PropertyRef Name="id_materia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Materias_Usuarios">
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="1" />
+          <End Role="Materias" Type="Self.Materias" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="id_usuario" />
+            </Principal>
+            <Dependent Role="Materias">
+              <PropertyRef Name="usuario_creacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Perfiles_Usuarios">
+          <End Role="Perfiles" Type="Self.Perfiles" Multiplicity="1" />
+          <End Role="Perfiles1" Type="Self.Perfiles" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Perfiles">
+              <PropertyRef Name="id_perfil" />
+            </Principal>
+            <Dependent Role="Perfiles1">
+              <PropertyRef Name="id_perfil" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Usuarios_Perfiles">
+          <End Role="Perfiles" Type="Self.Perfiles" Multiplicity="1" />
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Perfiles">
+              <PropertyRef Name="id_perfil" />
+            </Principal>
+            <Dependent Role="Usuarios">
+              <PropertyRef Name="id_perfil" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Preferencia_Usuarios">
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="1" />
+          <End Role="Preferencia" Type="Self.Preferencia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="id_usuario" />
+            </Principal>
+            <Dependent Role="Preferencia">
+              <PropertyRef Name="id_usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Preferencia_Usuarios1">
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="1" />
+          <End Role="Preferencia" Type="Self.Preferencia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="id_usuario" />
+            </Principal>
+            <Dependent Role="Preferencia">
+              <PropertyRef Name="usuario_creacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ubicacion_Usuarios">
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="1" />
+          <End Role="Ubicacion" Type="Self.Ubicacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="id_usuario" />
+            </Principal>
+            <Dependent Role="Ubicacion">
+              <PropertyRef Name="id_usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Usuarios_Creacion">
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="1" />
+          <End Role="Usuarios1" Type="Self.Usuarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="id_usuario" />
+            </Principal>
+            <Dependent Role="Usuarios1">
+              <PropertyRef Name="usuario_creacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="dbEventosUGEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Administrativo" EntityType="Self.Administrativo" />
+          <EntitySet Name="Cabecera_Matricula" EntityType="Self.Cabecera_Matricula" />
+          <EntitySet Name="Carrera" EntityType="Self.Carrera" />
+          <EntitySet Name="Catalogo_Preferencias" EntityType="Self.Catalogo_Preferencias" />
+          <EntitySet Name="Cursos" EntityType="Self.Cursos" />
+          <EntitySet Name="Docentes" EntityType="Self.Docentes" />
+          <EntitySet Name="Estados" EntityType="Self.Estados" />
+          <EntitySet Name="Estudiantes" EntityType="Self.Estudiantes" />
+          <EntitySet Name="Evento" EntityType="Self.Evento" />
+          <EntitySet Name="Facultad" EntityType="Self.Facultad" />
+          <EntitySet Name="Materias" EntityType="Self.Materias" />
+          <EntitySet Name="Perfiles" EntityType="Self.Perfiles" />
+          <EntitySet Name="Preferencia" EntityType="Self.Preferencia" />
+          <EntitySet Name="Ubicacion" EntityType="Self.Ubicacion" />
+          <EntitySet Name="Usuarios" EntityType="Self.Usuarios" />
+          <EntitySet Name="Detalle_Matricula" EntityType="Self.Detalle_Matricula" />
+          <AssociationSet Name="FK_Administrativo_Estados" Association="Self.FK_Administrativo_Estados">
+            <End Role="Estados" EntitySet="Estados" />
+            <End Role="Administrativo" EntitySet="Administrativo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cabecera_Matricula_Carrera" Association="Self.FK_Cabecera_Matricula_Carrera">
+            <End Role="Carrera" EntitySet="Carrera" />
+            <End Role="Cabecera_Matricula" EntitySet="Cabecera_Matricula" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cabecera_Matricula_Estados" Association="Self.FK_Cabecera_Matricula_Estados">
+            <End Role="Estados" EntitySet="Estados" />
+            <End Role="Cabecera_Matricula" EntitySet="Cabecera_Matricula" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cabecera_Matricula_Estudiantes" Association="Self.FK_Cabecera_Matricula_Estudiantes">
+            <End Role="Estudiantes" EntitySet="Estudiantes" />
+            <End Role="Cabecera_Matricula" EntitySet="Cabecera_Matricula" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cabecera_Matricula_Usuarios" Association="Self.FK_Cabecera_Matricula_Usuarios">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="Cabecera_Matricula" EntitySet="Cabecera_Matricula" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Detalle_Matricula_Cabecera_Matricula" Association="Self.FK_Detalle_Matricula_Cabecera_Matricula">
+            <End Role="Cabecera_Matricula" EntitySet="Cabecera_Matricula" />
+            <End Role="Detalle_Matricula" EntitySet="Detalle_Matricula" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Carrera_Estados" Association="Self.FK_Carrera_Estados">
+            <End Role="Estados" EntitySet="Estados" />
+            <End Role="Carrera" EntitySet="Carrera" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Carrera_Facultad" Association="Self.FK_Carrera_Facultad">
+            <End Role="Facultad" EntitySet="Facultad" />
+            <End Role="Carrera" EntitySet="Carrera" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Carrera_Usuarios" Association="Self.FK_Carrera_Usuarios">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="Carrera" EntitySet="Carrera" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Catalogo_Preferencias_Estados" Association="Self.FK_Catalogo_Preferencias_Estados">
+            <End Role="Estados" EntitySet="Estados" />
+            <End Role="Catalogo_Preferencias" EntitySet="Catalogo_Preferencias" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Preferencia_Catalogo_Preferencias" Association="Self.FK_Preferencia_Catalogo_Preferencias">
+            <End Role="Catalogo_Preferencias" EntitySet="Catalogo_Preferencias" />
+            <End Role="Preferencia" EntitySet="Preferencia" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cursos_Estados" Association="Self.FK_Cursos_Estados">
+            <End Role="Estados" EntitySet="Estados" />
+            <End Role="Cursos" EntitySet="Cursos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cursos_Usuarios" Association="Self.FK_Cursos_Usuarios">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="Cursos" EntitySet="Cursos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Detalle_Matricula_Cursos" Association="Self.FK_Detalle_Matricula_Cursos">
+            <End Role="Cursos" EntitySet="Cursos" />
+            <End Role="Detalle_Matricula" EntitySet="Detalle_Matricula" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Detalle_Matricula_Docentes" Association="Self.FK_Detalle_Matricula_Docentes">
+            <End Role="Docentes" EntitySet="Docentes" />
+            <End Role="Detalle_Matricula" EntitySet="Detalle_Matricula" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Detalle_Matricula_Estados" Association="Self.FK_Detalle_Matricula_Estados">
+            <End Role="Estados" EntitySet="Estados" />
+            <End Role="Detalle_Matricula" EntitySet="Detalle_Matricula" />
+          </AssociationSet>
+          <AssociationSet Name="FK_estado_estado" Association="Self.FK_estado_estado">
+            <End Role="Estados" EntitySet="Estados" />
+            <End Role="Perfiles" EntitySet="Perfiles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Estudiantes_Estados" Association="Self.FK_Estudiantes_Estados">
+            <End Role="Estados" EntitySet="Estados" />
+            <End Role="Estudiantes" EntitySet="Estudiantes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Evento_Estados" Association="Self.FK_Evento_Estados">
+            <End Role="Estados" EntitySet="Estados" />
+            <End Role="Evento" EntitySet="Evento" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Facultad_Estados" Association="Self.FK_Facultad_Estados">
+            <End Role="Estados" EntitySet="Estados" />
+            <End Role="Facultad" EntitySet="Facultad" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Materias_Estados" Association="Self.FK_Materias_Estados">
+            <End Role="Estados" EntitySet="Estados" />
+            <End Role="Materias" EntitySet="Materias" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Preferencia_Estados" Association="Self.FK_Preferencia_Estados">
+            <End Role="Estados" EntitySet="Estados" />
+            <End Role="Preferencia" EntitySet="Preferencia" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ubicacion_Estados" Association="Self.FK_Ubicacion_Estados">
+            <End Role="Estados" EntitySet="Estados" />
+            <End Role="Ubicacion" EntitySet="Ubicacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Usuarios_Estados" Association="Self.FK_Usuarios_Estados">
+            <End Role="Estados" EntitySet="Estados" />
+            <End Role="Usuarios" EntitySet="Usuarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Facultad_Usuarios" Association="Self.FK_Facultad_Usuarios">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="Facultad" EntitySet="Facultad" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Detalle_Matricula_Materias" Association="Self.FK_Detalle_Matricula_Materias">
+            <End Role="Materias" EntitySet="Materias" />
+            <End Role="Detalle_Matricula" EntitySet="Detalle_Matricula" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Materias_Usuarios" Association="Self.FK_Materias_Usuarios">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="Materias" EntitySet="Materias" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Perfiles_Usuarios" Association="Self.FK_Perfiles_Usuarios">
+            <End Role="Perfiles" EntitySet="Perfiles" />
+            <End Role="Perfiles1" EntitySet="Perfiles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Usuarios_Perfiles" Association="Self.FK_Usuarios_Perfiles">
+            <End Role="Perfiles" EntitySet="Perfiles" />
+            <End Role="Usuarios" EntitySet="Usuarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Preferencia_Usuarios" Association="Self.FK_Preferencia_Usuarios">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="Preferencia" EntitySet="Preferencia" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Preferencia_Usuarios1" Association="Self.FK_Preferencia_Usuarios1">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="Preferencia" EntitySet="Preferencia" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ubicacion_Usuarios" Association="Self.FK_Ubicacion_Usuarios">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="Ubicacion" EntitySet="Ubicacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Usuarios_Creacion" Association="Self.FK_Usuarios_Creacion">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="Usuarios1" EntitySet="Usuarios" />
+          </AssociationSet>
+          <FunctionImport Name="spConsultarLogin" ReturnType="Collection(dbEventosUGModel.spConsultarLogin_Result)">
+            <Parameter Name="correo" Mode="In" Type="String" />
+            <Parameter Name="clave" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="spInsertarEvento">
+            <Parameter Name="id_preferencia" Mode="In" Type="Int32" />
+            <Parameter Name="Titulo" Mode="In" Type="String" />
+            <Parameter Name="Detalle" Mode="In" Type="String" />
+            <Parameter Name="fecha_inicio" Mode="In" Type="DateTime" />
+            <Parameter Name="fecha_fin" Mode="In" Type="DateTime" />
+            <Parameter Name="usuario_creacion" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <AssociationSet Name="FK_Evento_Catalogo_Preferencias" Association="dbEventosUGModel.FK_Evento_Catalogo_Preferencias">
+            <End Role="Catalogo_Preferencias" EntitySet="Catalogo_Preferencias" />
+            <End Role="Evento" EntitySet="Evento" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Evento_Usuarios" Association="dbEventosUGModel.FK_Evento_Usuarios">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="Evento" EntitySet="Evento" />
+          </AssociationSet>
+          <FunctionImport Name="spConsultarEventos" ReturnType="Collection(dbEventosUGModel.spConsultarEventos_Result)">
+            <Parameter Name="id_usuario" Mode="In" Type="Int32" />
+            <Parameter Name="id_evento" Mode="In" Type="Int32" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="spConsultarLogin_Result">
+          <Property Type="String" Name="correo" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="clave" Nullable="false" MaxLength="20" />
+          <Property Type="Int32" Name="id_usuario" Nullable="false" />
+        </ComplexType>
+        <Association Name="FK_Evento_Catalogo_Preferencias">
+          <End Type="dbEventosUGModel.Catalogo_Preferencias" Role="Catalogo_Preferencias" Multiplicity="1" />
+          <End Type="dbEventosUGModel.Evento" Role="Evento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Catalogo_Preferencias">
+              <PropertyRef Name="id_preferencia" />
+            </Principal>
+            <Dependent Role="Evento">
+              <PropertyRef Name="id_preferencia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Evento_Usuarios">
+          <End Type="dbEventosUGModel.Usuarios" Role="Usuarios" Multiplicity="1" />
+          <End Type="dbEventosUGModel.Evento" Role="Evento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="id_usuario" />
+            </Principal>
+            <Dependent Role="Evento">
+              <PropertyRef Name="usuario_creacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="spConsultarEventos_Result">
+          <Property Type="String" Name="Titulo" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Preferencia" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Detalle" Nullable="false" MaxLength="200" />
+          <Property Type="DateTime" Name="fecha_inicio" Nullable="false" />
+          <Property Type="DateTime" Name="fecha_fin" Nullable="false" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="dbEventosUGModelStoreContainer" CdmEntityContainer="dbEventosUGEntities">
+          <EntitySetMapping Name="Administrativo">
+            <EntityTypeMapping TypeName="dbEventosUGModel.Administrativo">
+              <MappingFragment StoreEntitySet="Administrativo">
+                <ScalarProperty Name="id_administrativo" ColumnName="id_administrativo" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="apellido" ColumnName="apellido" />
+                <ScalarProperty Name="correo" ColumnName="correo" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cabecera_Matricula">
+            <EntityTypeMapping TypeName="dbEventosUGModel.Cabecera_Matricula">
+              <MappingFragment StoreEntitySet="Cabecera_Matricula">
+                <ScalarProperty Name="id_matricula" ColumnName="id_matricula" />
+                <ScalarProperty Name="id_estudiante" ColumnName="id_estudiante" />
+                <ScalarProperty Name="id_carrera" ColumnName="id_carrera" />
+                <ScalarProperty Name="usuario_creacion" ColumnName="usuario_creacion" />
+                <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+                <ScalarProperty Name="fecha_modificacion" ColumnName="fecha_modificacion" />
+                <ScalarProperty Name="esatdo_matricula" ColumnName="esatdo_matricula" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Carrera">
+            <EntityTypeMapping TypeName="dbEventosUGModel.Carrera">
+              <MappingFragment StoreEntitySet="Carrera">
+                <ScalarProperty Name="id_carrera" ColumnName="id_carrera" />
+                <ScalarProperty Name="id_facultad" ColumnName="id_facultad" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+                <ScalarProperty Name="fecha_modificacion" ColumnName="fecha_modificacion" />
+                <ScalarProperty Name="usuario_creacion" ColumnName="usuario_creacion" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Catalogo_Preferencias">
+            <EntityTypeMapping TypeName="dbEventosUGModel.Catalogo_Preferencias">
+              <MappingFragment StoreEntitySet="Catalogo_Preferencias">
+                <ScalarProperty Name="id_preferencia" ColumnName="id_preferencia" />
+                <ScalarProperty Name="detalle" ColumnName="detalle" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cursos">
+            <EntityTypeMapping TypeName="dbEventosUGModel.Cursos">
+              <MappingFragment StoreEntitySet="Cursos">
+                <ScalarProperty Name="id_curso" ColumnName="id_curso" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="usuario_creacion" ColumnName="usuario_creacion" />
+                <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+                <ScalarProperty Name="fecha_modificacion" ColumnName="fecha_modificacion" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Docentes">
+            <EntityTypeMapping TypeName="dbEventosUGModel.Docentes">
+              <MappingFragment StoreEntitySet="Docentes">
+                <ScalarProperty Name="id_docente" ColumnName="id_docente" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="apellido" ColumnName="apellido" />
+                <ScalarProperty Name="correo" ColumnName="correo" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Estados">
+            <EntityTypeMapping TypeName="dbEventosUGModel.Estados">
+              <MappingFragment StoreEntitySet="Estados">
+                <ScalarProperty Name="id_esatdo" ColumnName="id_esatdo" />
+                <ScalarProperty Name="detalle" ColumnName="detalle" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Estudiantes">
+            <EntityTypeMapping TypeName="dbEventosUGModel.Estudiantes">
+              <MappingFragment StoreEntitySet="Estudiantes">
+                <ScalarProperty Name="identificacion" ColumnName="identificacion" />
+                <ScalarProperty Name="id_carrera" ColumnName="id_carrera" />
+                <ScalarProperty Name="id_curso" ColumnName="id_curso" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="apellido" ColumnName="apellido" />
+                <ScalarProperty Name="correo" ColumnName="correo" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Evento">
+            <EntityTypeMapping TypeName="dbEventosUGModel.Evento">
+              <MappingFragment StoreEntitySet="Evento">
+                <ScalarProperty Name="id_preferencia" ColumnName="id_preferencia" />
+                <ScalarProperty Name="id_evento" ColumnName="id_evento" />
+                <ScalarProperty Name="Titulo" ColumnName="Titulo" />
+                <ScalarProperty Name="Detalle" ColumnName="Detalle" />
+                <ScalarProperty Name="fecha_inicio" ColumnName="fecha_inicio" />
+                <ScalarProperty Name="fecha_fin" ColumnName="fecha_fin" />
+                <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+                <ScalarProperty Name="fecha_modificacion" ColumnName="fecha_modificacion" />
+                <ScalarProperty Name="usuario_creacion" ColumnName="usuario_creacion" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Facultad">
+            <EntityTypeMapping TypeName="dbEventosUGModel.Facultad">
+              <MappingFragment StoreEntitySet="Facultad">
+                <ScalarProperty Name="id_facultad" ColumnName="id_facultad" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+                <ScalarProperty Name="fecha_modificacion" ColumnName="fecha_modificacion" />
+                <ScalarProperty Name="usuario_creacion" ColumnName="usuario_creacion" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Materias">
+            <EntityTypeMapping TypeName="dbEventosUGModel.Materias">
+              <MappingFragment StoreEntitySet="Materias">
+                <ScalarProperty Name="id_materia" ColumnName="id_materia" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+                <ScalarProperty Name="fecha_modificacion" ColumnName="fecha_modificacion" />
+                <ScalarProperty Name="usuario_creacion" ColumnName="usuario_creacion" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Perfiles">
+            <EntityTypeMapping TypeName="dbEventosUGModel.Perfiles">
+              <MappingFragment StoreEntitySet="Perfiles">
+                <ScalarProperty Name="id_perfil" ColumnName="id_perfil" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="usuario_creacion" ColumnName="usuario_creacion" />
+                <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+                <ScalarProperty Name="fecha_modificacion" ColumnName="fecha_modificacion" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Preferencia">
+            <EntityTypeMapping TypeName="dbEventosUGModel.Preferencia">
+              <MappingFragment StoreEntitySet="Preferencia">
+                <ScalarProperty Name="id_preferencia" ColumnName="id_preferencia" />
+                <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
+                <ScalarProperty Name="id_estado" ColumnName="id_estado" />
+                <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+                <ScalarProperty Name="fecha_modificacion" ColumnName="fecha_modificacion" />
+                <ScalarProperty Name="usuario_creacion" ColumnName="usuario_creacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Ubicacion">
+            <EntityTypeMapping TypeName="dbEventosUGModel.Ubicacion">
+              <MappingFragment StoreEntitySet="Ubicacion">
+                <ScalarProperty Name="id_ubicacion" ColumnName="id_ubicacion" />
+                <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
+                <ScalarProperty Name="actual_lat" ColumnName="actual_lat" />
+                <ScalarProperty Name="actual_long" ColumnName="actual_long" />
+                <ScalarProperty Name="actual_ubicacion" ColumnName="actual_ubicacion" />
+                <ScalarProperty Name="temp_lat" ColumnName="temp_lat" />
+                <ScalarProperty Name="temp_long" ColumnName="temp_long" />
+                <ScalarProperty Name="temp_ubicacion" ColumnName="temp_ubicacion" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Usuarios">
+            <EntityTypeMapping TypeName="dbEventosUGModel.Usuarios">
+              <MappingFragment StoreEntitySet="Usuarios">
+                <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
+                <ScalarProperty Name="id_perfil" ColumnName="id_perfil" />
+                <ScalarProperty Name="clave" ColumnName="clave" />
+                <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+                <ScalarProperty Name="fecha_modificacion" ColumnName="fecha_modificacion" />
+                <ScalarProperty Name="usuario_creacion" ColumnName="usuario_creacion" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Detalle_Matricula">
+            <EntityTypeMapping TypeName="dbEventosUGModel.Detalle_Matricula">
+              <MappingFragment StoreEntitySet="Detalle_Matricula">
+                <ScalarProperty Name="id_materia" ColumnName="id_materia" />
+                <ScalarProperty Name="id_docente" ColumnName="id_docente" />
+                <ScalarProperty Name="id_matricula" ColumnName="id_matricula" />
+                <ScalarProperty Name="id_curso" ColumnName="id_curso" />
+                <ScalarProperty Name="estado_materia" ColumnName="estado_materia" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="spConsultarLogin" FunctionName="dbEventosUGModel.Store.spConsultarLogin">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="dbEventosUGModel.spConsultarLogin_Result">
+                <ScalarProperty Name="correo" ColumnName="correo" />
+                <ScalarProperty Name="clave" ColumnName="clave" />
+                <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spInsertarEvento" FunctionName="dbEventosUGModel.Store.spInsertarEvento" />
+          <FunctionImportMapping FunctionImportName="spConsultarEventos" FunctionName="dbEventosUGModel.Store.spConsultarEventos">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="dbEventosUGModel.spConsultarEventos_Result">
+                <ScalarProperty Name="Titulo" ColumnName="Titulo" />
+                <ScalarProperty Name="Preferencia" ColumnName="Preferencia" />
+                <ScalarProperty Name="Detalle" ColumnName="Detalle" />
+                <ScalarProperty Name="fecha_inicio" ColumnName="fecha_inicio" />
+                <ScalarProperty Name="fecha_fin" ColumnName="fecha_fin" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
