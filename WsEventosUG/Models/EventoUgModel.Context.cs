@@ -98,5 +98,19 @@ namespace WsEventosUG.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spConsultarEventos_Result>("spConsultarEventos", id_usuarioParameter, id_eventoParameter);
         }
+    
+        public virtual ObjectResult<spConsultarPreferencias_Result> spConsultarPreferencias()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spConsultarPreferencias_Result>("spConsultarPreferencias");
+        }
+    
+        public virtual ObjectResult<spConsultarPreferenciasIndividual_Result> spConsultarPreferenciasIndividual(Nullable<int> id_uduario)
+        {
+            var id_uduarioParameter = id_uduario.HasValue ?
+                new ObjectParameter("id_uduario", id_uduario) :
+                new ObjectParameter("id_uduario", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spConsultarPreferenciasIndividual_Result>("spConsultarPreferenciasIndividual", id_uduarioParameter);
+        }
     }
 }

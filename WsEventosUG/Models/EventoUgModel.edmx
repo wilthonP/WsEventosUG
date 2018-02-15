@@ -616,6 +616,10 @@ advertencia 6002: La tabla o vista 'dbEventosUG.dbo.Detalle_Matricula' no tiene 
           <Parameter Name="correo" Type="varchar" Mode="In" />
           <Parameter Name="clave" Type="varchar" Mode="In" />
         </Function>
+        <Function Name="spConsultarPreferencias" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="spConsultarPreferenciasIndividual" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id_uduario" Type="int" Mode="In" />
+        </Function>
         <Function Name="spInsertarEvento" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="id_preferencia" Type="int" Mode="In" />
           <Parameter Name="Titulo" Type="varchar" Mode="In" />
@@ -1614,11 +1618,16 @@ advertencia 6002: La tabla o vista 'dbEventosUG.dbo.Detalle_Matricula' no tiene 
             <Parameter Name="id_usuario" Mode="In" Type="Int32" />
             <Parameter Name="id_evento" Mode="In" Type="Int32" />
           </FunctionImport>
+          <FunctionImport Name="spConsultarPreferencias" ReturnType="Collection(dbEventosUGModel.spConsultarPreferencias_Result)" />
+          <FunctionImport Name="spConsultarPreferenciasIndividual" ReturnType="Collection(dbEventosUGModel.spConsultarPreferenciasIndividual_Result)">
+            <Parameter Name="id_uduario" Mode="In" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="spConsultarLogin_Result">
           <Property Type="String" Name="correo" Nullable="true" MaxLength="50" />
           <Property Type="String" Name="clave" Nullable="false" MaxLength="20" />
           <Property Type="Int32" Name="id_usuario" Nullable="false" />
+          <Property Type="Int32" Name="id_perfil" Nullable="false" />
         </ComplexType>
         <Association Name="FK_Evento_Catalogo_Preferencias">
           <End Type="dbEventosUGModel.Catalogo_Preferencias" Role="Catalogo_Preferencias" Multiplicity="1" />
@@ -1651,6 +1660,16 @@ advertencia 6002: La tabla o vista 'dbEventosUG.dbo.Detalle_Matricula' no tiene 
           <Property Type="String" Name="Detalle" Nullable="false" MaxLength="200" />
           <Property Type="DateTime" Name="fecha_inicio" Nullable="false" />
           <Property Type="DateTime" Name="fecha_fin" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="spConsultarPreferencias_Result">
+          <Property Type="Int32" Name="id_preferencia" Nullable="false" />
+          <Property Type="String" Name="detalle" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="estado" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="spConsultarPreferenciasIndividual_Result">
+          <Property Type="Int32" Name="id_preferencia" Nullable="false" />
+          <Property Type="String" Name="detalle" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="estado" Nullable="false" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1857,6 +1876,7 @@ advertencia 6002: La tabla o vista 'dbEventosUG.dbo.Detalle_Matricula' no tiene 
                 <ScalarProperty Name="correo" ColumnName="correo" />
                 <ScalarProperty Name="clave" ColumnName="clave" />
                 <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
+                <ScalarProperty Name="id_perfil" ColumnName="id_perfil" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -1870,6 +1890,24 @@ advertencia 6002: La tabla o vista 'dbEventosUG.dbo.Detalle_Matricula' no tiene 
                 <ScalarProperty Name="Detalle" ColumnName="Detalle" />
                 <ScalarProperty Name="fecha_inicio" ColumnName="fecha_inicio" />
                 <ScalarProperty Name="fecha_fin" ColumnName="fecha_fin" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spConsultarPreferencias" FunctionName="dbEventosUGModel.Store.spConsultarPreferencias">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="dbEventosUGModel.spConsultarPreferencias_Result">
+                <ScalarProperty Name="id_preferencia" ColumnName="id_preferencia" />
+                <ScalarProperty Name="detalle" ColumnName="detalle" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spConsultarPreferenciasIndividual" FunctionName="dbEventosUGModel.Store.spConsultarPreferenciasIndividual">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="dbEventosUGModel.spConsultarPreferenciasIndividual_Result">
+                <ScalarProperty Name="id_preferencia" ColumnName="id_preferencia" />
+                <ScalarProperty Name="detalle" ColumnName="detalle" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

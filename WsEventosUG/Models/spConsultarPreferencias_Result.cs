@@ -11,11 +11,10 @@ namespace WsEventosUG.Models
 {
     using System;
     
-    public partial class spConsultarLogin_Result
+    public partial class spConsultarPreferencias_Result
     {
-        public string correo { get; set; }
-        public string clave { get; set; }
-        public int id_usuario { get; set; }
-        public int id_perfil { get; set; }
+        public int id_preferencia { get; set; }
+        public string detalle { get; set; }
+        public int estado { get; set; }
     }
 }

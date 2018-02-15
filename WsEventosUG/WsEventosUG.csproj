@@ -187,10 +187,13 @@
     <Compile Include="Controllers\AdministrativoesController.cs" />
     <Compile Include="Controllers\ConsultarEventosController.cs" />
     <Compile Include="Controllers\ConsultarLoginController.cs" />
+    <Compile Include="Controllers\ConsultarPreferenciasController.cs" />
+    <Compile Include="Controllers\ConsultarPreferenciasIndividualController.cs" />
     <Compile Include="Controllers\DocentesController.cs" />
     <Compile Include="Controllers\EstudiantesController.cs" />
     <Compile Include="Controllers\EventoesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PreferenciasController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -256,6 +259,12 @@
       <DependentUpon>EventoUgModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\spConsultarLogin_Result.cs">
+      <DependentUpon>EventoUgModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\spConsultarPreferenciasIndividual_Result.cs">
+      <DependentUpon>EventoUgModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\spConsultarPreferencias_Result.cs">
       <DependentUpon>EventoUgModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Ubicacion.cs">
